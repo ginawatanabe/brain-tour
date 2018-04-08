@@ -22,6 +22,7 @@ window.onload = function() {
     let name = '/models/testbrain.json';
     loader.load(name, function(geometry, materials) {
       mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+      mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.06; 
       scene.add(mesh);
     });
 
@@ -56,8 +57,14 @@ window.onload = function() {
     renderer.render(scene,camera);
   }
 
+  //Rotation along y axis.
+  function rotate() {
+    mesh.rotation.y -= 0.02;
+  }
+
   function animate() {
     requestAnimationFrame(animate);
+    rotate();
     render();
   }
 
