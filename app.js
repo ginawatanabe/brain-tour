@@ -8,16 +8,12 @@ window.onload = function() {
   let mesh = null;
 
   function init() {
+    //Initialize scene.
     container = document.createElement('div');
     document.body.appendChild(container);
     scene = new THREE.Scene();
 
-    //Initialize camera.
-    camera = new THREE.PerspectiveCamera(70, width / height, 1, 500);
-    camera.position.set(0, 3.5, 10);
-    camera.lookAt(scene.position);
-
-    //Add test mesh.
+    //Load test mesh.
     let loader = new THREE.JSONLoader();
     let name = 'models/testbrain.json';
     loader.load(name, function(geometry, materials) {
@@ -25,10 +21,21 @@ window.onload = function() {
       scene.add(mesh);
     });
 
+    //Initialize camera.
+    camera = new THREE.PerspectiveCamera(70, width / height, 1, 500);
+    camera.position.set(0, 3.5, 10);
+    camera.lookAt(scene.position);
+
     //Initialize lighting.
     light = new THREE.PointLight(0xffffff, lightIntensity);
     light.position.set(50,50,50);
     scene.add(light);
+
+    //Initialize renderer.
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
+    container.appendChild(renderer.domElement);
   }
 
 }
