@@ -7,6 +7,9 @@ window.onload = function() {
   let intersects;
   let mesh = null;
 
+  init();
+  render();
+
   function init() {
     //Initialize scene.
     container = document.createElement('div');
@@ -36,6 +39,11 @@ window.onload = function() {
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(width, height);
     container.appendChild(renderer.domElement);
+  }
+
+  //Render scene.
+  function render() {
+    renderer.render(scene,camera);
   }
 
 }
