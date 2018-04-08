@@ -42,6 +42,15 @@ window.onload = function() {
     container.appendChild(renderer.domElement);
   }
 
+  //Adjust camera on resize of window.
+  function onResize() {
+    windowHalfX = window.innerWidth/2;
+    windowHalfY = window.innerHeight/2;
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+
   //Render scene.
   function render() {
     renderer.render(scene,camera);
@@ -51,5 +60,7 @@ window.onload = function() {
     requestAnimationFrame(animate);
     render();
   }
+
+  window.addEventListener('resize',onResize,false);
 
 }
