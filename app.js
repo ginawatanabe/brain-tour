@@ -24,6 +24,11 @@ window.onload = function() {
       mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
       scene.add(mesh);
     });
+
+    //Initialize lighting.
+    light = new THREE.PointLight(0xffffff, lightIntensity);
+    light.position.set(50,50,50);
+    scene.add(light);
   }
 
 }
