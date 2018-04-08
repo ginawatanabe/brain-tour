@@ -3,12 +3,13 @@ window.onload = function() {
   let height = window.innerHeight;
   let container, scene, camera, renderer, light;
   let raycaster = new THREE.Raycaster();
+  let lightIntensity = 1.4;
   let mouse = new THREE.Vector2(), INTERSECTED, CLICKINTERSECTED;
   let intersects;
   let mesh = null;
 
   init();
-  render();
+  animate();
 
   function init() {
     //Initialize scene.
@@ -18,7 +19,7 @@ window.onload = function() {
 
     //Load test mesh.
     let loader = new THREE.JSONLoader();
-    let name = 'models/testbrain.json';
+    let name = '/models/testbrain.json';
     loader.load(name, function(geometry, materials) {
       mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
       scene.add(mesh);
@@ -44,6 +45,11 @@ window.onload = function() {
   //Render scene.
   function render() {
     renderer.render(scene,camera);
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    render();
   }
 
 }
